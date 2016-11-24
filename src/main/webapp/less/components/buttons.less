@@ -1,0 +1,129 @@
+.btn{
+  color: @grey-light;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  line-height: 90%;
+  font-size: 12px;
+  font-family: @regular;
+  border: 1px solid;
+  border-color: @grey-lighter;
+  background-color: white;
+  display: table;
+  .border.radius(15px);
+  padding: 9px 15px;
+  cursor: pointer;
+  .transition(.3s);
+
+  &.text-pink{
+    color: @pink !important;
+  }
+  &.pink{
+    color: white !important;
+    background-color: @pink;
+    border-color:  @pink !important;
+  }
+  &.big{
+    font-size: 16px;
+    padding: 12px 20px;
+    .border.radius(20px);
+    font-family: @bold;
+  }
+  &.fixed-bottom{
+    padding-right: 50px;
+    position: relative;    
+    box-shadow: 0 0 3px rgba(0,0,0,.5);
+
+    &:after{
+      content: "\f00c";
+      .fontawesome();
+      position: absolute;
+      bottom: 11px;
+      right: 20px;
+    }
+
+    @media(max-width: 992px){   
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      .border.radius(0);
+      z-index: 10;
+      margin: 0 !important;
+      text-align: right;
+    }//media
+
+  }//fixed-bottom
+  &.disabled{
+    background: #a4a4a4;
+    color: #f4f4f4;
+  }
+
+  &.right{
+    margin: 0 auto;
+    margin-right: 0
+  }
+
+  &.icon{      
+    height: 32px;
+    min-width: 32px;
+    position: relative;
+    color: @gray-light;
+    border: 2px solid;
+    border-color: @gray-lighter;
+    .border.radius(16px);
+
+    &:before{
+      .fontawesome();
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 30px;
+      height: 20px;
+      text-align: center;
+      font-size: 19px;
+      display: inline-block;
+    }
+  }//icon
+
+  &.icon-close:before{
+    content: "\f00d";
+    width: 30px;
+  }
+
+  &.icon-check:before{
+    content: "\f00c";
+  }
+
+  &.icon-edit:before{
+    content: "\f040";
+  }
+
+  &.icon-arrow-down:before{
+    content: "\f078";
+  }
+
+  &.icon-add:before{
+    content: "\f067";
+  }
+
+  &.icon-info:before{
+    content: "\f129";
+  }
+
+  &.icon-trash:before{
+    content: "\f014";
+  }
+
+  &.negative{
+    background: #BB3737;
+    border: none;
+    color: white;
+  }//.negative
+
+  &.center{
+    display: table !important;
+    margin: 0 auto !important;
+  }
+}//btn

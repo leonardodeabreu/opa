@@ -1,0 +1,20 @@
+.finalizar{
+	&.pagelist .pagelist-item .pagelist-item-content{
+		@media(max-width: 767px){
+			width: ~"calc(100% - (32px + 130px))";
+		}
+	}//.quem-falou-comigo
+	.pagelist-item-buttons .btn{
+		padding-right: 32px;
+	}
+
+	&.pagelist .pagelist-item.next-phase-solicitante:after{
+		content: 'O prestador precisa informar que este serviço foi finalizado';
+	}
+
+	&.pagelist .pagelist-item.next-phase-prestador:after{
+		content: 'O solicitante precisa informar que este serviço foi finalizado';
+	}
+}//.quem-falou-comigo
+
+

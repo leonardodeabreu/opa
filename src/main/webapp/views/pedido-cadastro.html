@@ -1,0 +1,106 @@
+<!-- Modal de confirmação -->
+<div class="modal">
+  <div class="modal-inner">
+    <article class="modal-content">
+      <h2 class="modal-title">
+      </h2>
+      <p class="modal-message"> 
+      </p>
+      <div class="modal-buttons">
+        <a class="btn positive check">
+          Okay
+        </a>
+      </div>
+    </article>  <!-- /modal-content -->               
+  </div><!-- /modal-inner -->
+</div>
+
+<section class="pedido-cadastro standard form-page bg-gray-pattern">
+	<div class="container" >
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+				<h1 class="form-title">
+		        	Novo Pedido de Serviço
+		        </h1>
+				<form class="form user" name="pedidoForm">
+
+					<span class="titulo">
+						<label class="label">
+							Título do serviço que não encontrou
+						</label>
+						<input type="text" placeholder="Ex.: Zeladora para casas" ng-model="pedido.titulo"></input>
+					</span>
+
+					<span class="descricao">
+						<label class="label">
+							Descrição do Serviço
+						</label>
+						<textarea placeholder="Fale sobre este serviço.." ng-model="pedido.descricao"></textarea>
+					</span>
+
+					<span>
+						<label class="label">
+							Categoria
+						</label>
+						<select ng-options="item as item.nome for item in categorias track by item.nome" ng-model="pedido.categoria" ></select>
+					</span>
+
+					<span class="icon preco disabled">
+						<label class="label">
+							Preço
+						</label>
+
+						<div class="sisters">                    		
+							<input ng-model="pedido.valor" type="text" name="preco" placeholder="Ex: 9.90"></input>								
+						</div>
+						<div class="sisters">
+							<div class="switch"></div>								                			
+						</div>
+					</span>
+
+					<span class="icon periodo disabled">
+						<label class="label">
+							Período
+						</label>
+						<div class="sisters">
+							<select ng-model="pedido.tipoPeriodo">
+								<option value="H" ng-selected="pedido.tipoPeriodo == 'H' ">Hora(s)</option>
+								<option value="D" ng-selected="pedido.tipoPeriodo == 'D' ">Dia(s)</option>
+								<option value="S" ng-selected="pedido.tipoPeriodo == 'S' ">Semana(s)</option>
+							</select>
+						</div>
+						<div class="sisters">
+							<div class="switch"></div>								                			
+						</div>
+					</span>
+
+				 	<div class="row">
+	          <div class="col-xs-6">
+	            <span class="icon estado">
+		            	<select ng-change="getCidades()" ng-options="item as item.nome for item in estados track by item.nome" ng-model="pedido.estadoBrasil" >
+		            		 <option style="display:none" value="">Estado</option>
+		            	</select>
+		          </span>
+	          </div>
+	          
+	          <div class="col-xs-6">
+	            <span class="icon endereco">
+	          		<select class="" ng-options="item as item.nome for item in cidades track by item.nome" ng-model="	pedido.cidadeEstado" >
+	          			<option style="display:none" value="">Cidade</option>
+	          		</select>
+							</span>
+						</div>
+
+					</div>
+					<button class="btn pink big fixed-bottom center" ng-click="adicionarPedido(pedidoForm.$valid)">
+						Opa, pedir
+					</button>
+
+				</form>
+			</div><!-- /col -->
+			<!-- <pre ng-bind="pedido | json"></pre>
+			<pre ng-bind="categorias | json"></pre> -->
+
+		</div><!-- /row -->
+	</div><!-- /container -->
+</section>

@@ -1,0 +1,93 @@
+//-- Login
+section.login{
+
+  &.form-page{
+    min-height: 100vh;
+    top: 0;
+    z-index: 15;
+    position: absolute;
+    width: 100%;
+    background-color: @purple;
+    background-position: top right, top left;
+    background-repeat: no-repeat;
+    background-size: 150px auto, cover;
+    background-image: @login-bg-detail, @login-bg-responsive;
+
+    @media (max-width: 320px){
+      zoom: 100% !important;
+    }
+
+    @media(min-width: 992px){
+      background-size: auto auto, cover;
+      background-image: @login-bg-detail, @login-bg;
+    }
+  }
+
+  .login-form{    
+    width: 100%;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    overflow: inherit;
+    border-top: 2px solid white;
+    
+    @media(min-width: 992px){
+      max-width: 300px;
+      top: 170px;
+      right: 0;
+      height: 230px;
+      border: none;
+    }//media
+
+    &:before{
+      content: '';
+      position: absolute;
+      top: -170px;
+      width: 170px;
+      height: 170px;
+      right: 0;
+      left: 0;
+      margin:  auto;
+      background: @login-logo top center no-repeat;
+    }
+
+    span.icon:nth-of-type(2){
+      margin-bottom: 10px;
+    }
+
+    hr{
+      margin-bottom: 15px;
+
+      @media(max-width: 992px){
+        border-color: rgba(255, 255, 255, 0.15);
+
+        &:before{
+          display: none
+        }
+      }//media
+    }//hr
+
+  }//login-form
+
+  .sisters{
+    &:last-child .btn{
+      display: table;
+      margin: 0 auto;
+      margin-right: 0;
+    }
+  }//.sisters
+
+  .forgot-password a{
+    text-align: right;
+    margin-bottom: 15px;
+    font-size: 13px;
+    display: block;
+    color: white;
+
+    @media(min-width: 992px){
+      color: @purple;
+    }
+  }
+}//section.login

@@ -1,0 +1,148 @@
+<section class="servico-cadastro standard form-page bg-gray-pattern">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      	<h1 class="form-title">
+          Anunciar Serviço
+        </h1>
+  			<form class="form service" name="servicoForm">
+
+					<span class="titulo-servico">
+						<label class="label">
+							Título do Serviço
+						</label>
+						<input type="text" ng-model="servico.titulo" name="titulo" placeholder="Ex: Troca de Porta"></input>
+					</span>
+
+          <span class="busca">
+            <label class="label">
+              Categoria
+            </label>
+             <select id="categoria" ng-model="servico.categoria" ng-options="cat.nome for cat in categorias track by cat.nome" name="categoria">
+                <option value="">Selecione uma Categoria</option>
+            </select>  
+          </span>
+
+          <span class="descricao">
+            <label class="label">
+                Descrição do Serviço
+            </label>
+            <textarea ng-model="servico.descricao" placeholder="Fale sobre este serviço.."></textarea>
+          </span>
+
+          <div class="imagem">
+
+            <label class="label">
+              Imagens do serviço
+            </label>
+
+            <div class="imagem-inner">
+
+              <div class="image">
+                <input type="file" custom-on-change="uploadFile" name="image" id="1"></input>
+                <figure class="input-select-image" style="background-image: url({{servico.image}});"></figure>
+              </div>
+
+              <div class="image">
+                <input type="file" custom-on-change="uploadFile" name="image" id="2"></input>
+                <figure class="input-select-image" style="background-image: url({{servico.image2}});"></figure>
+              </div>
+
+              <div class="image">
+                <input type="file" custom-on-change="uploadFile" name="image" id="3"></input>
+                <figure class="input-select-image" style="background-image: url({{servico.image3}});"></figure>
+              </div>
+
+              <div class="image">
+                <input type="file" custom-on-change="uploadFile" name="image" id="4"></input>
+                <figure class="input-select-image" style="background-image: url({{servico.image4}});"></figure>
+              </div> 
+
+            </div> <!-- /imagem-inner -->
+
+          </div> <!-- /imagem -->
+
+    			<hr/>
+
+
+
+					<span class="icon preco disabled">
+						<label class="label">
+							Preço
+						</label>
+        		<div class="sisters">                    		
+							<input ng-model="servico.valor" type="text" name="preco" placeholder="Ex: 9.90" disabled="disabled"></input>								
+        		</div>
+            <div class="sisters">
+              <div class="switch"></div>								                			
+        		</div>
+					</span>
+
+					<span class="icon periodo disabled">
+						<label class="label">
+          		Período
+          	</label>
+        		<div class="sisters">
+							<select ng-model="servico.tipoPeriodo">
+                <option value="h" ng-selected="servico.tipoPeriodo == 'h'">Hora</option>
+                <option value="d" ng-selected="servico.tipoPeriodo == 'd'">Dia</option>
+                <option value="s" ng-selected="servico.tipoPeriodo == 's'">Semana</option>
+              </select>              
+        		</div>
+        		<div class="sisters">
+              <div class="switch"></div>								                			
+        		</div>
+					</span>
+          <hr/>
+
+          <label class="label">
+              Endereço
+          </label>
+
+          <div class="row">
+
+            <div class="col-xs-6">
+              <span class="icon estado">
+                <select ng-change="getCidades(servico.estado)" ng-options="est.nome for est in estados track by est.nome" ng-model="servico.estado" placeholder="Selecione um estado!">
+                  <option value="">Estado</option>
+                </select>
+              </span>
+            </div>
+
+            <div class="col-xs-6">
+              <span class="icon endereco">
+                <select ng-options="cid.nome for cid in cidades track by cid.nome" ng-model="servico.cidade" >
+                  <option value="">Cidade</option>
+                </select>
+              </span>
+            </div>
+
+          </div>
+
+          
+          <button class="btn pink big fixed-bottom center" ng-click="adicionarServico(servicoForm.$valid)" >
+              Opa! Anunciar
+          </button>
+      	</form>
+      </div><!-- /col -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+</section>
+
+<!-- Modal de confirmação -->
+<div class="modal">
+  <div class="modal-inner">
+    <article class="modal-content">
+      <h2 class="modal-title">
+        wohoo!
+      </h2>
+      <p class="modal-message"> 
+      </p>
+      <div class="modal-buttons">
+        <a class="btn positive check">
+          Okay
+        </a>
+      </div>
+    </article>  <!-- /modal-content -->               
+  </div><!-- /modal-inner -->
+</div> <!-- /modal -->

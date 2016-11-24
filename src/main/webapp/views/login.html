@@ -1,0 +1,23 @@
+<section class="login form-page">
+	<form class="form login-form" name="loginForm">
+		<span class="icon login">
+			<input type="text" name="login" ng-model="login.username" placeholder="Email/Login" ng-required="true" class="login"></input>
+		</span>
+		<span class="icon senha">
+			<input type="password" name="password" ng-model="login.password" placeholder="Senha" ng-required="true" class="password"></input>
+		</span>
+		<div class="forgot-password">
+			<a href="#/app/esqueci-minha-senha">
+				Esqueci minha senha
+			</a>
+			<label ng-show="mensagem" style="margin-top: -33px; position: absolute;">Dados incorretos!</label>
+		</div>
+		<hr/>
+		<div class="sisters">
+			<button class="btn pink" ng-click="entrar(loginForm.$valid)">Entrar</button>
+		</div>
+		<div class="sisters">
+			<a class="btn" href="#app/usuario-cadastro">Me Cadastrar</a>
+		</div>
+	</form>
+</section>

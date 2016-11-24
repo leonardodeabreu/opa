@@ -1,0 +1,138 @@
+.filter-order{
+  .border.radius(5px);
+  margin-bottom: 20px;
+  background: transparent;
+  padding: 15px;
+  overflow: inherit;
+
+  @media(max-width: 991px){
+    .box.shadow(none);
+    margin: 0 -15px;    
+    padding: 15px 10px;
+  }
+
+  @media(min-width: 991px){
+    padding: 20px;
+    background: white;
+  }
+
+  .feed-select{
+    display: table;
+    margin: 0 auto;
+    margin-right: 0;
+
+    select{
+      border: none;
+      background: transparent;
+      text-transform: uppercase;
+      font-family: @medium;
+      color: #5D5E5E;
+      font-size: 15px;
+      padding: 0;
+      text-align: right;
+      cursor: pointer;
+
+      @media(max-width: 991px){
+        font-size: 10px;
+        padding: 6px 0;
+      }
+    }//select
+  }//feed-select
+
+  .filter{
+
+    @media(min-width: 767px){
+      position: relative;
+      display: table;
+    }
+
+    & > .btn{
+      @media(max-width: 991px){
+        font-size: 10px;
+      }
+    }//btn
+
+    .filter-content{
+      position: fixed;
+      left: 0;
+      width: 100%;
+      background: white;
+      z-index: 12;
+      top: 100%;
+      bottom: initial;
+      .box.shadow(0 0 4px rgba(0,0,0,.0));
+      .opacity(0);
+      .transition(.4s);
+
+      @media(min-width: 767px){
+        width: 400px;
+        position: absolute;
+        height: 380px;
+        border-radius: 10px;
+        left: 0px;
+        overflow: hidden;
+        top: initial;
+        visibility: hidden;        
+        bottom: 40px;
+      }
+
+      &.active{
+        top: initial;
+        .box.shadow(0 0 4px rgba(0,0,0,.5));
+        .opacity(1);
+
+        @media(max-width: 767px){
+          bottom: 0;
+        }
+
+        @media(min-width: 767px){
+          visibility: visible;
+        }
+      }//active
+
+    }//filter-cotent
+
+    .filter-content .filter-title{
+      padding: 15px 20px;
+      color: @gray;
+      border-bottom: 2px solid darken(@gray-lighter, 10%);
+      font-size: 22px;
+      font-family: @bold;
+      text-transform: lowercase;
+      position: relative;
+
+      .btn{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 20px;
+        margin: auto;
+      }
+    }//.filter-content .filter-title
+
+    .filter-content form{
+      padding: 20px;
+
+      .sisters:nth-of-type(2n+0){
+        width: ~"calc(100% - 85px)";
+      }
+
+      .sisters{
+        width: 85px;
+      }
+
+      .icon.preco{
+        input{
+          padding-left: 70px;
+        }
+
+        &:before{
+          content: 'Até R$';
+          width: 60px;
+        }
+      }//.icon.preco
+    }//.filter-content form{
+
+  }//filter
+
+}//filter-order

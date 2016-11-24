@@ -1,0 +1,185 @@
+<header class="header">
+	<div class="container">
+		<!-- Categorias -->
+		<aside class="categories">
+			<div class="tab-toggle">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</aside>
+
+		<aside class="quero-anunciar">
+			<a class="quero-anunciar-btn" href="#/app/servico-cadastro">
+				Anunciar um serviço!
+			</a>
+		</aside>
+
+		<!-- Logo -->
+		<a href="#/app/feed" class="brand">
+			<img src="img/common/logo-mobile.png" class="logo-mobile">
+			<img src="img/common/logo.png" class="logo">
+		</a>
+
+		<!-- Menu Usuário -->
+    <aside class="user-no-login" ng-show="controllLogin">            
+			<a href="#/app/login" alt="Entrar">
+				<figure class="tab-toggle">
+				</figure>
+				<span class="user-name">
+					Entrar
+				</span>				
+			</a>
+		</aside>
+
+    <aside class="user" ng-show="!controllLogin">            
+			<figure class="tab-toggle" style="background-image: url({{image}});">
+			</figure>
+			<span class="user-name" ng-bind="nome"></span>
+		</aside>
+
+
+	</div> <!-- /container -->
+</header>
+
+
+
+<div class="navigation-bars">
+	<nav class="nav-categories">
+		<span id="nav-top"></span>	
+		<h2>
+			Categorias
+		</h2>
+		<ul >
+			<li ng-repeat="cat in categorias">
+				<a ng-click="servicoPorCategoria(cat.nome)">{{cat.nome}}</a>
+			</li>
+		</ul>
+	</nav><!-- /nav-categories -->
+
+	<nav class="nav-user">
+
+		<span id="nav-top"></span>	
+
+		<a href="#/app/usuario">	
+			<article  style="background-image: url({{image}});">
+				<figure class="user-img" style="background-image: url({{image}});">
+				</figure>
+				<h2>
+					{{nome}}
+				</h2>
+			</article>
+		</a>
+
+		<ul>
+			<li class="my-feed">
+				<a href="#app/feed" title="Meu Perfil">
+					Procurar Serviços
+				</a>
+			</li>
+			<li class="my-profile">
+				<a href="#app/usuario/{{usuarioLogado}}" title="Meu Perfil">
+					Meu Perfil
+				</a>
+				<a href="#app/usuario-cadastro" class="my-account"></a>
+			</li>
+			<li class="my-services has-ul">
+				<a title="Prestações">
+					Meus Serviços
+				</a>
+				<ul>
+					<li>
+						<a href="#app/servico-cadastro" title="Anunciar Novo Serviço">
+							Anunciar Novo
+						</a>
+					</li>
+					<li>
+						<a href="#app/quem-falou-comigo" title="Quem Falou Comigo">
+							Quem Falou Comigo
+						</a>
+						<i class="notification">
+							1
+						</i>
+					</li>
+					<li>
+						<a href="#app/servico-aberto-prestador" title="Serviços Em Andamento">
+							Em Andamento
+						</a>
+						<i class="notification">
+							1
+						</i>
+					</li>
+					<li>
+						<a href="#app/finalizar-prestador" title="Aguardando Finalização">
+							Aguardando Finalização
+						</a>
+						<i class="notification">
+							1
+						</i>
+					</li>
+					<li>
+						<a href="#app/servico-concluido-prestador" title="Serviços Concluídos">
+							Concluídos
+						</a>
+						<i class="notification">
+							1
+						</i>
+					</li>
+					<li>
+						<a href="#app/servico-gerenciar-prestador" title="Gerenciar Serviços">
+							Gerenciar
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="my-requests has-ul">
+				<a title="Solicitações">
+					Meus Pedidos
+				</a>
+				<ul>
+					<li>
+						<a href="#app/pedido-cadastro-pergunta" title="Solicitar Novo Pedido">
+							Solicitar Novo
+						</a>
+					</li>
+					<li>
+						<a href="#app/pedido-nao-atendido" title="Pedidos Não Atendidos">
+							Não Atendidos
+						</a>
+					</li>
+					<li>
+						<a href="#app/servico-aberto-solicitante" title="Pedidos Em Andamento">
+							Em Andamento
+						</a>
+						<i class="notification">
+							1
+						</i>
+					</li>
+					<li>
+						<a href="#app/finalizar-solicitante" title="Aguardando Finalização">
+							Aguardando Finalização
+						</a>
+						<i class="notification">
+							1
+						</i>
+					</li>
+					<li>
+						<a href="#app/servico-concluido-solicitante" title="Pedidos Concluídos">
+							Concluídos
+						</a>
+						<i class="notification">
+							1
+						</i>
+					</li>
+				</ul>
+			</li>
+			<li class="logout">
+				<a href="" title="Sair" ng-click="sair()">
+					Sair
+				</a>
+			</li>
+
+		</ul>
+	</nav><!-- /nav-user -->
+
+</div><!-- /navegation-bars -->

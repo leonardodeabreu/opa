@@ -1,0 +1,58 @@
+.servico-aberto{
+	@media(max-width: 767px){
+
+		.pagelist-item-content{
+			width: ~"calc(100% - (32px + 80px))";
+		}
+	}//media
+
+	.pagelist-item{
+		position: relative;
+		overflow: inherit;
+	}
+
+	.pagelist-item .btn.open{
+		background: @gray-light;
+		border-color: @gray-light;
+		color: white;
+	}
+
+	.pagelist-item .details{
+		padding: 15px;
+		background-repeat: repeat-x;
+		background-position: top center, bottom center;
+		background-image: @dropdown-shadow-top, @dropdown-shadow-bottom;
+		background-color: @gray-lighter;
+		font-size: 14px;
+		overflow: hidden;
+	    overflow-y: auto;
+	    max-height: 150px;
+	    display: none;
+	    z-index: 5;
+	    position: absolute;
+	    top: 100%;
+	    left: 0;
+	    width: 100%;
+
+	    hr{
+	    	border-top: 1px solid #ccc;
+	    	margin: 10px 0;
+	    }
+
+		@media(min-width: 767px){
+	    	.border.radius(0 0 5px 5px);
+			background-position: top center;
+			background-image: @dropdown-shadow-top;
+			font-size: 12px;
+			.box.shadow(0 0 3px rgba(0,0,0,.3));
+		}
+	}
+
+	&.prestador.pagelist .pagelist-item.next-phase:after{
+		content: 'Agora este serviço está aguardando finalização do solicitante';
+	}
+
+	&.solicitante.pagelist .pagelist-item.next-phase:after{
+		content: 'Agora este serviço está aguardando finalização do prestador';
+	}
+}

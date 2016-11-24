@@ -1,0 +1,48 @@
+.quem-falou-comigo.pagelist .pagelist-item{
+	position: relative;
+	overflow: inherit;
+	list-style: none;
+
+	.pagelist-item-content{
+		@media(max-width: 767px){
+			width: ~"calc(100% - (32px + 175px))";
+		}
+	}//.pagelist-item-content
+
+	&.next-phase:after{
+		content: 'Este serviço agora está em andamento';
+	}
+
+	.btn.open{
+		background: @gray-light;
+		border-color: @gray-light;
+		color: white;
+	}
+
+	.details{
+		padding: 15px;
+		background-repeat: repeat-x;
+		background-position: top center, bottom center;
+		background-image: @dropdown-shadow-top, @dropdown-shadow-bottom;
+		background-color: @gray-lighter;
+		font-size: 14px;
+		overflow: hidden;
+	    overflow-y: auto;
+	    max-height: 100px;
+	    display: none;
+	    z-index: 5;
+	    position: absolute;
+	    top: 100%;
+	    left: 0;
+	    width: 100%;
+
+		@media(min-width: 767px){
+	    	.border.radius(0 0 5px 5px);
+			background-position: top center;
+			background-image: @dropdown-shadow-top;
+			font-size: 12px;
+			.box.shadow(0 0 3px rgba(0,0,0,.3));
+		}
+	}
+}//.quem-falou-comigo
+

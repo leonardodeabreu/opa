@@ -1,0 +1,120 @@
+<section class="servico-detalhes standard ">
+  <div class="servico-detalhes-slider">
+    <div class="container">
+      <div class="servico-detalhes-slider-inner">
+        <ul id="servico-detalhes-slider">
+          <li>
+            <div class="inner"  style="background-image: url({{servicoDetalhes.image}})"></div>
+          </li>
+          <li>
+            <div class="inner" style="background-image: url({{servicoDetalhes.image2}})"></div>
+          </li>
+          <li>
+            <div class="inner"  style="background-image: url({{servicoDetalhes.image3}})"></div>
+          </li>
+          <li>
+            <div class="inner" style="background-image: url({{servicoDetalhes.image4}})"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h2 class="white-block servico-detalhes-title">
+			{{servicoDetalhes.titulo}}
+		</h2>
+    <h3 class="white-block servico-detalhes-category">
+      {{servicoDetalhes.categoria}}
+    </h2>
+    <div class="white-block price-contact">
+      <div class="sisters">
+        <span class="price" ng-show="servicoDetalhes.valor != 'false'">
+					<b class="price-number">
+						{{servicoDetalhes.valor}}
+					</b>
+					<i class="period">
+						{{servicoDetalhes.tipoPeriodo}}
+					</i>
+				</span>
+        <span class="no-price" ng-show="servicoDetalhes.valor == 'false'">
+					A
+					<b>
+						Combinar
+					</b>
+				</span>
+      </div>
+      <div class="sisters">
+        <span class="contact" ng-click="verificaSeLogado()" ng-disabled="!jaClicou">
+					quero este
+					<b>
+						serviço
+					</b>
+				</span>
+        <span class="help">						
+					<p>
+						Clicando no botão '<strong>Quero este serviço</strong>' o(a) prestador(a) deste serviço será habilitado(a) a perguntar se você quer os serviços dele(a)!
+					</p>
+				</span>
+      </div>
+      <div class="telephone">
+        <div class="back">
+        </div>
+        <h3 class="telephone-seller">
+					entre em contato com <b class="user">{{donoDoServico.nome}}</b>
+				</h3>
+        <ul class="telephone-list">
+          <li ng-if="donoDoServico.telefones[0].tipo == 'f'">
+            <i class="fa fa-phone"></i> {{donoDoServico.telefones[0].telefone}}
+          </li>
+          <li ng-if="donoDoServico.telefones[0].tipo == 'c'">
+            <i class="fa fa-whatsapp"></i> {{donoDoServico.telefones[0].telefone}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="white-block seller">
+      <a href="#/app/usuario/{{donoDoServico.id}}">
+        <figure class="seller-image" style="background-image: url('{{donoDoServico.image}}');">
+        </figure>
+        <span class="seller-name">
+							{{donoDoServico.nome}}
+						</span>
+      </a>
+      está oferecendo esta gentileza.
+    </div>
+  </div>
+  <div class="container">
+    <div class="servico-description white-block">
+      <h2 class="servico-description-title">
+						Que serviço é esse?
+					</h2>
+      <div class="servico-description-inner">
+        <p>
+          {{servicoDetalhes.descricao}}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Modal de confirmação -->
+<div class="modal">
+  <div class="modal-inner">
+    <article class="modal-content">
+      <h2 class="modal-title">
+        wohoo!
+      </h2>
+      <p class="modal-message">
+      </p>
+      <div class="modal-buttons">
+        <a class="btn positive check">
+          Okay
+        </a>
+      </div>
+    </article>
+    <!-- /modal-content -->
+  </div>
+  <!-- /modal-inner -->
+</div>
+<!-- /modal -->

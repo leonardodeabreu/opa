@@ -1,0 +1,43 @@
+//-- Cadastro de Serviço
+section.pedido-cadastro{
+
+  .sisters{    
+    position: relative;
+    width: ~"calc(100% - 85px)";
+
+    &:last-child{
+      width: 85px;
+      padding-left: 20px;
+    }
+  }//sisters
+
+  .form span{
+    &.periodo input{
+      padding-right: 110px;
+    }
+    &.disabled:after{
+      width: ~"calc(100% - 80px)";
+    }//disabled
+
+    &.periodo.disabled:after{
+      width: 100%;
+    }
+  }//.form span
+
+  .form span.icon{
+    input,
+    select,
+    textarea{
+      padding-left: 70px;
+    }
+
+    &:before{
+      width: 60px;
+    }
+
+    &.preco:before {
+      content: 'até R$';
+    }
+  }//.form span.icon
+
+}//section.service-form 

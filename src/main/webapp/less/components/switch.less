@@ -1,0 +1,38 @@
+//Switch
+.switch{
+  width: 65px;
+  height: 40px;
+  .border.radius(20px);
+  border: 1px solid #C4C4C3;
+  position: relative;
+  cursor: pointer;
+  .transition(.3s);
+  z-index: 1;
+  background: @gray-lighter;
+
+  &:before{
+    content: '';
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    .transition(.3s);
+    .border.radius(100%);
+    background: #ec2a33;
+    .box.shadow(0 0 3px rgba(0,0,0,0.3));
+  }
+
+  &.true{
+    background: #4DB748;
+    &:before{
+      background: white;
+      left: inherit;
+      right: 5px;
+    }
+  }//true
+
+  &.over{
+        z-index: 10;
+  }
+}//switch

@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="criarTabelaUsuario" author="leonardo">
+		<createTable tableName="usuario">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="nome" type="VARCHAR(255)"></column>
+			<column name="login" type="VARCHAR(40)"></column>
+			<column name="senha" type="VARCHAR(20)"></column>
+			<column name="ativo" type="BOOLEAN"></column>
+			<column name="data_cadastro" type="DATE"></column>
+			<column name="data_nascimento" type="DATE"></column>
+			<column name="telefones" type="VARCHAR(255)"></column>
+			<column name="primeiro_login" type="BOOLEAN"></column>
+			<column name="cpf" type="VARCHAR(255)"></column>
+			<column name="genero" type="VARCHAR(255)"></column>
+			<column name="endereco_id" type="VARCHAR(36)"></column>
+		</createTable>
+		<addPrimaryKey constraintName="usuario_pk" tableName="usuario" columnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="criarTabelaEndereco" author="leonardo">
+		<createTable tableName="endereco">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="cep" type="VARCHAR(10)"></column>
+			<column name="logradouro" type="VARCHAR(255)"></column>
+			<column name="bairro" type="VARCHAR(255)"></column>
+			<column name="numero" type="VARCHAR(12)"></column>
+			<column name="cidade_id" type="VARCHAR(36)"></column>
+			<column name="usuario_id" type="VARCHAR(36)"></column>
+		</createTable>
+		<addPrimaryKey constraintName="endereco_pk" tableName="endereco" columnNames="id"/>
+		<addForeignKeyConstraint constraintName="enderecousuario_fk" baseTableName="endereco" baseColumnNames="usuario_id" referencedTableName="usuario" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="criar_fk_usuario_endereco" author="leonardo">
+		<addForeignKeyConstraint constraintName="usuarioendereco_fk" baseTableName="usuario" baseColumnNames="endereco_id" referencedTableName="endereco" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="criarTabelaCidade" author="leonardo">
+		<createTable tableName="cidade">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="codigo_ibge" type="NUMBER(10,0)"></column>
+			<column name="nome" type="VARCHAR(255)"></column>
+			<column name="estado_id" type="VARCHAR(36)"></column>
+		</createTable>
+		<addPrimaryKey constraintName="cidade_pk" tableName="cidade" columnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="criar_fk_endereco_cidade" author="leonardo">
+		<addForeignKeyConstraint constraintName="enderecocidade_fk" baseTableName="endereco" baseColumnNames="cidade_id" referencedTableName="cidade" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="criarTabelaEstado" author="leonardo">
+		<createTable tableName="estado">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="codigo_ibge" type="NUMBER(10,0)"></column>
+			<column name="nome" type="VARCHAR(255)"></column>
+			<column name="sigla" type="VARCHAR(2)"></column>
+			<column name="pais_id" type="VARCHAR(36)"></column>
+		</createTable>
+		<addPrimaryKey constraintName="estado_pk" tableName="estado" columnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="criar_fk_cidade_estado" author="leonardo">
+		<addForeignKeyConstraint constraintName="cidadeestado_fk" baseTableName="cidade" baseColumnNames="estado_id" referencedTableName="estado" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="criarTabelaPais" author="leonardo">
+		<createTable tableName="pais">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="nome" type="VARCHAR(255)"></column>
+			<column name="sigla" type="VARCHAR(2)"></column>
+		</createTable>
+		<addPrimaryKey constraintName="pais_pk" tableName="pais" columnNames="id"/>
+		<addForeignKeyConstraint constraintName="estadopais_fk" baseTableName="estado" baseColumnNames="pais_id" referencedTableName="pais" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="dropFKUsuarioEndereco" author="leonardo">
+		 <dropForeignKeyConstraint baseTableName="usuario" constraintName="usuarioendereco_fk"/>
+		 <renameColumn columnDataType="VARCHAR(36)" newColumnName="fk_id_endereco" oldColumnName="endereco_id" schemaName="public" tableName="usuario"/>
+		 <addForeignKeyConstraint constraintName="usuarioendereco_fk" baseTableName="usuario" baseColumnNames="fk_id_endereco" referencedTableName="endereco" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="criarTabelaServico" author="sergio">
+		<createTable tableName="servico">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="titulo" type="VARCHAR(255)"></column>
+			<column name="descricao" type="VARCHAR(255)"></column>
+			<column name="valor" type="DECIMAL(10,2)"></column>
+			<column name="imagem" type="VARCHAR(255)"></column>
+			<column name="estado" type="VARCHAR(255)"></column>
+			<column name="tags" type="VARCHAR(255)"></column>
+			<column name="inicio" type="DATE"></column>
+			<column name="termino" type="DATE"></column>
+			<column name="duracao" type="DATE"></column>
+			<column name="data_cadastro" type="DATE"></column>
+			<column name="fk_id_endereco_servico" type="VARCHAR(36)"></column>
+			<column name="fk_id_categoria" type="VARCHAR(36)"></column>
+		</createTable>
+		<addPrimaryKey constraintName="servico_pk" tableName="servico" columnNames="id"/>
+		<addForeignKeyConstraint constraintName="servico_endereco_fk" baseTableName="servico" baseColumnNames="fk_id_endereco_servico" referencedTableName="endereco" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="criarTabelaCategoria" author="sergio">
+		<createTable tableName="categoria">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="nome" type="VARCHAR(255)"></column>
+			<column name="cor" type="VARCHAR(255)"></column>
+			<column name="fk_id_servico" type="VARCHAR(36)"></column>
+		</createTable>
+		<addPrimaryKey constraintName="categoria_pk" tableName="categoria" columnNames="id"/>
+		<addForeignKeyConstraint constraintName="categoria_servico_fk" baseTableName="categoria" baseColumnNames="fk_id_servico" referencedTableName="servico" referencedColumnNames="id"/>
+		<addForeignKeyConstraint constraintName="servico_categoria_fk" baseTableName="servico" baseColumnNames="fk_id_categoria" referencedTableName="categoria" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="renomeandoFK" author="leonardo">
+		 <dropForeignKeyConstraint baseTableName="endereco" constraintName="enderecousuario_fk"/>
+		 <renameColumn columnDataType="VARCHAR(36)" newColumnName="fk_id_usuario" oldColumnName="usuario_id" schemaName="public" tableName="endereco"/>
+		 <addForeignKeyConstraint constraintName="enderecousuario_fk" baseTableName="endereco" baseColumnNames="fk_id_usuario" referencedTableName="usuario" referencedColumnNames="id"/>
+	
+		 <dropForeignKeyConstraint baseTableName="endereco" constraintName="enderecocidade_fk"/>
+		 <renameColumn columnDataType="VARCHAR(36)" newColumnName="fk_id_cidade" oldColumnName="cidade_id" schemaName="public" tableName="endereco"/>
+		 <addForeignKeyConstraint constraintName="enderecocidade_fk" baseTableName="endereco" baseColumnNames="fk_id_cidade" referencedTableName="cidade" referencedColumnNames="id"/>
+		 
+		 <dropForeignKeyConstraint baseTableName="cidade" constraintName="cidadeestado_fk"/>
+		 <renameColumn columnDataType="VARCHAR(36)" newColumnName="fk_id_estado" oldColumnName="estado_id" schemaName="public" tableName="cidade"/>
+		 <addForeignKeyConstraint constraintName="cidadeestado_fk" baseTableName="cidade" baseColumnNames="fk_id_estado" referencedTableName="estado" referencedColumnNames="id"/>
+		 
+		 <dropForeignKeyConstraint baseTableName="estado" constraintName="estadopais_fk"/>
+		 <renameColumn columnDataType="VARCHAR(36)" newColumnName="fk_id_pais" oldColumnName="pais_id" schemaName="public" tableName="estado"/>
+		 <addForeignKeyConstraint constraintName="estadopais_fk" baseTableName="estado" baseColumnNames="fk_id_pais" referencedTableName="pais" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="adicionarCampoEmailEmUsuario" author="leonardo">
+		<addColumn schemaName="public" tableName="usuario">
+        	<column name="email" type="varchar(255)"/>
+   		</addColumn>
+	</changeSet>
+	
+	<changeSet id="adicionarCamposUsuario" author="leonardo">
+		<addColumn schemaName="public" tableName="usuario">
+        	<column name="ultimo_acesso" type="date"/>
+   		</addColumn>
+	</changeSet>
+	
+	<changeSet id="criarTabelaUsuarioTelefone" author="leonardo">
+		<createTable tableName="usuario_telefone">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="tipo" type="VARCHAR(2)"></column>
+			<column name="telefone" type="VARCHAR(255)"></column>
+			<column name="fk_id_usuario" type="VARCHAR(36)"></column>
+		</createTable>
+		<addPrimaryKey constraintName="usuario_telefone_pk" tableName="usuario_telefone" columnNames="id"/>
+		<addForeignKeyConstraint constraintName="telefoneusuario_fk" baseTableName="usuario_telefone" baseColumnNames="fk_id_usuario" referencedTableName="usuario" referencedColumnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="alterarTabelaUsuarioColocandoIntegerTelefone" author="leonardo" >
+	    <modifyDataType columnName="telefones" newDataType="VARCHAR(36)" schemaName="public" tableName="usuario"/>
+	</changeSet>
+	
+	<changeSet id="alterarTabelaUsuarioNomeTelefone" author="leonardo" >
+	 	<renameColumn columnDataType="VARCHAR(36)" newColumnName="fk_id_telefone" oldColumnName="telefones" schemaName="public" tableName="usuario"/>
+	</changeSet>
+	
+	<changeSet id="removerColunaFKIdTelefone" author="leonardo">
+		<dropColumn tableName="usuario" columnName="fk_id_telefone" schemaName="public"/>
+	</changeSet>
+	
+	<changeSet id="removerColunaFKIdServicoDeCat" author="leonardo">
+		<dropColumn tableName="categoria" columnName="fk_id_servico" schemaName="public"/>
+	</changeSet>
+	
+	<changeSet id="adicionarCamposImage" author="arthur">
+		<addColumn schemaName="public" tableName="usuario">
+        	<column name="image" type="VARCHAR(255)"/>
+   		</addColumn>
+	</changeSet>
+	
+    <changeSet id="criarTabelaTimeLineServico" author="leonardo">
+        <createTable tableName="timelineservico">
+            <column name="id" type="VARCHAR(36)"></column>
+            <column name="estado_servico" type="varchar(50)"/>
+            <column name="hora_atualizacao" type="DATE"/>
+        </createTable>
+        <addPrimaryKey constraintName="timelineservico_pk" tableName="timelineservico" columnNames="id" />
+    </changeSet>
+	
+    <changeSet id="addColumTimeLineServico" author="leonardo">
+        <addColumn tableName="servico">
+            <column name="timelineservico_id" type="varchar(36)"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="removerEstadoDeServico" author="leonardo">
+		<dropColumn tableName="servico" columnName="estado" schemaName="public"/>
+	</changeSet>
+	
+	<changeSet id="dropTablePais" author="leonardo" >
+	    <dropTable cascadeConstraints="true"
+	            schemaName="public"
+	            tableName="pais"/>
+	    <dropColumn tableName="estado" columnName="fk_id_pais" schemaName="public" />
+	</changeSet>
+	
+	<changeSet  id="alterandoTabelaCidades" author="leonardo">
+	    <addColumn  schemaName="public" tableName="cidade">
+	        <column name="populacao_2010" type="integer"/>
+	        <column name="densidade_demo" type="numeric(10,2)"/>
+	        <column name="gentilico" type="varchar(255)"/>
+	        <column name="area" type="numeric(10,2)"/>
+	    </addColumn>
+	</changeSet>
+	
+	<changeSet id="dropTablCidade" author="leonardo" >
+	    <dropTable cascadeConstraints="true"
+	            schemaName="public"
+	            tableName="cidade"/>
+        <createTable tableName="cidade">
+            <column name="id" type="VARCHAR(36)"></column>
+            <column name="nome" type="VARCHAR(255)"></column>
+            <column name="codigo_ibge" type="NUMBER(10,0)"></column>
+            <column name="estado_id" type="VARCHAR(36)"></column>
+            <column name="populacao_2010" type="integer"/>
+            <column name="densidade_demo" type="numeric(10,2)"/>
+            <column name="gentilico" type="varchar(255)"/>
+            <column name="area" type="numeric(10,2)"/>
+        </createTable>
+		<addPrimaryKey constraintName="cidade_pk" tableName="cidade" columnNames="id"/>
+	</changeSet>
+	
+    <changeSet id="dropFKUsuarioEndereco_02" author="Arthur">
+        <dropForeignKeyConstraint baseTableName="usuario" constraintName="usuarioendereco_fk"/>
+        <dropColumn tableName="usuario" columnName="fk_id_endereco"/>
+        <addColumn schemaName="public" tableName="usuario">
+            <column name="estado" type="varchar(255)"/>
+            <column name="cidade" type="varchar(255)"/>
+           </addColumn>
+	</changeSet>
+	
+	<changeSet id="alterarTipotelefone" author="leonardo">
+    	<modifyDataType columnName="telefone" newDataType="NUMBER(20,0)" schemaName="public" tableName="usuario_telefone"/>
+	</changeSet>
+	
+	<changeSet id="alterandoServicoColocandoEstadoCidade" author="leonardo">
+        <dropForeignKeyConstraint baseTableName="servico" constraintName="servico_endereco_fk"/>
+        <dropColumn tableName="servico" columnName="fk_id_endereco_servico"/>
+        <addColumn schemaName="public" tableName="servico">
+            <column name="estado" type="varchar(255)"/>
+            <column name="cidade" type="varchar(255)"/>
+        </addColumn>
+	</changeSet>
+	
+    <changeSet id="criarTabelaPedido" author="arthur">
+        <createTable tableName="pedido">
+            <column name="id" type="VARCHAR(36)"></column>
+            <column name="titulo" type="VARCHAR(255)"></column>
+            <column name="descricao" type="VARCHAR(255)"></column>
+            <column name="valor" type="DECIMAL(10,2)"></column>
+            <column name="estado" type="VARCHAR(255)"></column>
+            <column name="periodo" type="DECIMAL(10,0)"></column>
+            <column name="tipo_periodo" type="VARCHAR(10)"></column>
+            <column name="data_cadastro" type="DATE"></column>
+            <column name="estado_brasil" type="VARCHAR(255)"></column>
+            <column name="cidade_estado" type="VARCHAR(255)"></column>
+            <column name="fk_id_categoria" type="VARCHAR(36)"></column>
+            <column name="usuario_id" type="VARCHAR(36)"></column>
+        </createTable>
+        <addForeignKeyConstraint constraintName="pedido_idUsuario_FK" baseTableName="pedido" baseColumnNames="usuario_id" referencedTableName="usuario" referencedColumnNames="id"/>
+        <addPrimaryKey constraintName="pedido_pk" tableName="pedido" columnNames="id"/>
+    </changeSet>
+    
+    <changeSet id="dropandoTimeLine" author="leonardo">
+        <dropColumn tableName="servico" columnName="timelineservico_id"/>
+	</changeSet>
+	
+	<changeSet id="addStatus" author="leonardo">
+       <addColumn schemaName="public" tableName="servico">
+            <column name="status" type="varchar(100)"/>
+       </addColumn>
+	</changeSet>
+	
+	<changeSet id="dropFkCategoriaServico" author="leonardo">
+		<dropForeignKeyConstraint baseTableName="servico" constraintName="servico_categoria_fk"/>
+	</changeSet>
+	
+	<changeSet id="addColunasTipoPeriodoServico" author="leoanrdo">
+		<addColumn schemaName="public" tableName="servico">
+        	<column name="tipo_periodo" type="varchar(1)"/>
+            <column name="periodo" type="varchar(20)"/>
+        </addColumn>
+	</changeSet>
+	
+	<changeSet id="alterandoFormatoDataServico" author="leonardo">
+	    <modifyDataType  columnName="data_cadastro" newDataType="TIMESTAMP WITHOUT TIME ZONE"
+	            schemaName="public" tableName="servico"/>
+	</changeSet>
+	
+	<changeSet id="addUsuarioDonoDoServico" author="leoanrdo">
+		<addColumn schemaName="public" tableName="servico">
+        	<column name="usuario_id" type="varchar(36)"/>
+        </addColumn>
+	</changeSet>
+	
+	<changeSet id="dropandoPrimeiroLoginEAcesso" author="leonardo">
+        <dropColumn tableName="usuario" columnName="ultimo_acesso"/>
+        <dropColumn tableName="usuario" columnName="primeiro_login"/>
+	</changeSet>
+	
+	<changeSet id="addImagemNoServico" author="leonardo">
+		<addColumn schemaName="public" tableName="servico">
+        	<column name="imagem2" type="varchar(255)"/>
+        	<column name="imagem3" type="varchar(255)"/>
+        	<column name="imagem4" type="varchar(255)"/>
+        </addColumn>
+	</changeSet>
+		
+	<changeSet id="alterandoFormatoDataPedido" author="leonardo">
+	   <modifyDataType  columnName="data_cadastro" newDataType="TIMESTAMP WITHOUT TIME ZONE"
+          		 schemaName="public" tableName="pedido"/>
+	</changeSet>
+	
+	<changeSet id="criarTabelaHistoricoServico" author="leonardo">
+		<createTable tableName="historico_servico">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="servico_id" type="VARCHAR(36)"></column>
+			<column name="usuario_requisicao_id" type="VARCHAR(36)"></column>
+			<column name="status" type="VARCHAR(100)"></column>
+			<column name="inicio" type="TIMESTAMP WITHOUT TIME ZONE"></column>
+			<column name="termino" type="TIMESTAMP WITHOUT TIME ZONE"></column>
+		</createTable>
+		<addPrimaryKey constraintName="historico_servico_pk" tableName="historico_servico" columnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="removerColunasDeServico" author="leonardo">
+		<dropColumn tableName="servico" columnName="inicio" schemaName="public"/>
+		<dropColumn tableName="servico" columnName="termino" schemaName="public"/>
+		<dropColumn tableName="servico" columnName="status" schemaName="public"/>
+	</changeSet>
+	
+	<changeSet id="addColunaAlteracao" author="leonardo">
+		<addColumn schemaName="public" tableName="historico_servico">
+        	<column name="ultima_alteracao" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </addColumn>
+	</changeSet>
+	
+	<changeSet id="removerColunasTagDeServico" author="leonardo">
+		<dropColumn tableName="servico" columnName="tags" schemaName="public"/>
+	</changeSet>
+	
+	<changeSet id="criarTabelaHistoricoFinalizacaoServico" author="leonardo">
+		<createTable tableName="historico_servico_finalizacao">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="historico_servico_id" type="VARCHAR(36)"></column>
+			<column name="usuario_id" type="VARCHAR(36)"></column>
+			<column name="origem" type="VARCHAR(100)"></column>
+		</createTable>
+		<addPrimaryKey constraintName="historico_finalizacao_servico_pk" tableName="historico_servico_finalizacao" columnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="removerEstadoPeriodoDePedido" author="leonardo">
+		<dropColumn tableName="pedido" columnName="estado" schemaName="public"/>
+		<dropColumn tableName="pedido" columnName="periodo" schemaName="public"/>
+	</changeSet>
+	
+	<changeSet id="criarTabelaHistoricoPedido" author="leonardo">
+		<createTable tableName="historico_pedido">
+			<column name="id" type="VARCHAR(36)"></column>
+			<column name="pedido_id" type="VARCHAR(36)"></column>
+			<column name="usuario_requisicao_id" type="VARCHAR(36)"></column>
+			<column name="status" type="VARCHAR(100)"></column>
+			<column name="inicio" type="TIMESTAMP WITHOUT TIME ZONE"></column>
+			<column name="termino" type="TIMESTAMP WITHOUT TIME ZONE"></column>
+		</createTable>
+		<addPrimaryKey constraintName="historico_pedido_pk" tableName="historico_pedido" columnNames="id"/>
+	</changeSet>
+	
+	<changeSet id="addColunaAlteracaoPedido" author="leonardo">
+		<addColumn schemaName="public" tableName="historico_pedido">
+        	<column name="ultima_alteracao" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </addColumn>
+	</changeSet>
+	
+</databaseChangeLog>

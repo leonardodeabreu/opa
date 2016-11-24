@@ -1,0 +1,86 @@
+.evaluation-bar{
+      width: 144px;
+      height: 18px;
+      .border.radius(9px);
+      overflow: hidden;
+      position: relative;
+
+      @media(min-width: 992px){
+        width: 160px;
+        height: 20px;
+        .border.radius(10px);
+      }
+
+      @media(min-width: 992px){
+        width: 200px;
+        height: 25px;
+        .border.radius(12px);
+      }
+
+      &:after,
+      &:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        height: 300%;
+        background-repeat: no-repeat;        
+        background-size:  auto 100%;
+        background-position: top left;
+        z-index: 1;
+      }
+
+      &:after{
+        background-image: @usuario-bar;
+        margin: auto;
+        top: 0;
+        width: 100%;
+      }
+
+      &:before{
+        z-index: 2;
+      }
+
+      &.prestador:before{
+        background-image:  @usuario-bar;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+      }
+
+      &.solicitante:before{
+        background-image:  @usuario-bar;
+        top: inherit;
+        bottom: 0;
+      }
+
+      &.bar-1:before{        
+        width: 10%;
+      }
+      &.bar-2:before{        
+        width: 20%;
+      }
+      &.bar-3:before{        
+        width: 30%;
+      }
+      &.bar-4:before{        
+        width: 40%;
+      }
+      &.bar-5:before{        
+        width: 50%;
+      }
+      &.bar-6:before{        
+        width: 60%;
+      }
+      &.bar-7:before{        
+        width: 70%;
+      }
+      &.bar-8:before{        
+        width: 80%;
+      }
+      &.bar-9:before{        
+        width: 90%;
+      }
+      &.bar-10:before{        
+        width: 100%;
+      }
+    }//bar

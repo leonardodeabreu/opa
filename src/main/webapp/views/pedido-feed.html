@@ -1,0 +1,187 @@
+<section class="standard feed pedido-feed ">
+
+	<div class="search">
+		<div class="container">
+			<input type="text" name="search" placeholder="O que você precisa?">
+			<button type="submit"><i class="fa fa-search"></i></button>
+		</div>
+	</div>
+
+	<div ng-include="'views/includes/servicos-pedidos.html'" class="sp-top"></div>	
+
+	<div class="container">
+
+		<div ng-include="'views/includes/feed-featured.html'"></div>
+
+		<div class="filter-order white-block">
+				<div class="sisters">
+						
+					<div class="filter">
+						<button class="btn">
+							Filtrar
+						</button>
+
+						<div class="filter-content">
+							<h2 class="filter-title">
+								filtrar
+
+								<button class="btn icon icon-close text-pink"></button>
+							</h2>
+							<form class="form">
+								<label class="label">
+									Preço
+								</label>
+								<div class="sisters">
+									<div class="switch"></div>								                			
+								</div>
+								<div class="sisters">                    		
+									<span class="icon preco disabled">
+										<input type="text" name="preco" placeholder="Ex: 9.90"></input>								
+									</span>
+								</div>
+
+								<label class="label">
+									Período
+								</label>
+								<div class="sisters">
+									<div class="switch"></div>								                			
+								</div>
+								<div class="sisters">                    		                 		
+									<span class="icon periodo disabled">
+										<select ng-model="servico.tipoPeriodo">
+											<option value="h" ng-selected="servico.tipoPeriodo == 'h'">Hora</option>
+											<option value="d" ng-selected="servico.tipoPeriodo == 'd'">Dia</option>
+											<option value="s" ng-selected="servico.tipoPeriodo == 's'">Semana</option>
+										</select>							
+									</span>
+								</div>
+
+
+								<label class="label">
+									Endereço
+								</label>
+
+								<div class="row">
+									<div class="col-xs-6">
+										<span class="icon estado">
+											<select ng-change="getCidades(servico.estado)" ng-options="est.nome for est in estados" ng-model="servico.estado" placeholder="Selecione um estado!">
+												<option value="">Estado</option>
+											</select>
+										</span>
+									</div>
+
+									<div class="col-xs-6">
+										<span class="icon endereco">
+											<select ng-options="cid.nome for cid in cidades | orderBy:'nome'" ng-model="servico.cidade" >
+												<option value="">Cidade</option>
+											</select>
+										</span>
+									</div>
+								</div>
+
+								<button class="btn pink big right" ng-click="adicionarServico(servicoForm.$valid)" >
+						            Opa! Filtrar
+						         </button>
+
+							</form>
+						</div>
+					</div>
+
+				</div>
+				<div class="sisters">
+					<div class="feed-select">
+						<select>
+							<option>
+								Ordenar Por
+							</option>
+							<option>
+								Perto de Mim
+							</option>
+							<option>
+								Mais Recentes
+							</option>
+							<option>
+								Melhor Avaliado
+							</option>
+							<option>
+								A-Z
+							</option>
+						</select>
+					</div>
+				</div>
+			</div><!-- /filter-order -->
+
+		<div ng-include="'views/includes/servicos-pedidos.html'" class="sp-bottom"></div>	
+
+		<ul class="pedido-list">
+			<div class="row">
+				
+			<!-- Repeat -->
+				<div class="col-sm-6 col-md-4" ng-repeat="feed in historicoPedido | orderBy:'-dataCadastro'">
+					<li class="pedido-item white-block">
+						<header class="pedido-header"> 
+							<div class="sisters">
+								<b class="category-title">
+									{{feed.categoria}}
+								</b>
+								<h5 class="service-title">
+									{{feed.titulo}}
+								</h5>
+							</div> 
+							
+							<div class="sisters">
+								<button class="btn icon icon-arrow-down text-pink"></button>
+							</div>
+						</header>
+
+						<div class="pedido-details">
+							<blockquote class="pedido-decription">
+								{{feed.descricao}}
+							</blockquote>
+
+							<article class="pedido-footer">
+								<div class="sisters">
+									<figure class="pedido-footer-img" style="background-image: url({{feed.imagemUsuario}});"></figure>
+									
+									<span>
+										<b class="pedido-footer-user">
+											{{feed.nomeUsuario}}
+										</b>
+										solicitou este serviço
+									</span>
+								</div>
+								
+								<div class="sisters">
+									<button class="btn pink" ng-click="recuperarObjOriginal(feed)">
+										prestar
+									</button>
+								</div>
+							</article>							
+						</div> <!-- /pedido-details -->
+
+					</li> <!-- /item da lista -->
+					
+				</div>
+			</div>
+		</ul>
+
+	</div> <!-- /container -->
+</section>
+
+<!-- Modal de confirmação -->
+<div class="modal">
+  <div class="modal-inner">
+    <article class="modal-content">
+      <h2 class="modal-title">
+        wohoo!
+      </h2>
+      <p class="modal-message"> 
+      </p>
+      <div class="modal-buttons">
+        <a class="btn positive check">
+          Okay
+        </a>
+      </div>
+    </article>  <!-- /modal-content -->               
+  </div><!-- /modal-inner -->
+</div> <!-- /modal -->

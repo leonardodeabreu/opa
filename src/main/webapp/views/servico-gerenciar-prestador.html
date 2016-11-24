@@ -1,0 +1,92 @@
+<section class="standard servico-gerenciar-prestador pagelist">
+	<div class="container">
+		
+		<div class="pagelist-header white-block prestador">
+			<i class="pagelist-header-icon"></i>
+
+			<div class="pagelist-header-content">
+
+				<h1 class="pagelist-header-title">
+					Gerenciar Meus Serviços
+				</h1>
+				<h2 class="pagelist-header-subtitle">
+					Edite, exclua e crie seus serviços
+				</h2>
+
+			</div> <!-- /pagelist-header-content -->
+
+			<a href="#app/servico-cadastro" class="btn icon icon-add pink"></a>
+
+		</div> <!-- /pagelist-header -->
+
+		<div class="row">
+			<ul class="pagelist-list">
+				<!-- iniciar o repeat -->
+				<div class="col-sm-6 col-md-3" ng-repeat="servico in servicoGerenciado | orderBy:'-dataCadastro'">
+					<li class="pagelist-item white-block">
+
+						<figure category="{{servico.categoria}}" class="pagelist-item-user" style="background-image: url({{servico.image}});">	
+						</figure>
+
+						<div class="pagelist-item-content">
+							<h2 class="service-title">
+									{{servico.titulo}}
+							</h2>
+						</div> <!-- /pagelist-item-content -->
+
+						<div class="pagelist-item-buttons">
+
+						<button class="btn icon icon-trash" ng-click="deletarServico(servico.id)"></button>
+						<a href="#/app/servico-cadastro/{{servico.id}}">
+							<button class="btn icon icon-edit"></button>
+						</a>
+							
+						</div> <!-- /pagelist-item-buttons -->
+						
+					</li> <!-- /pagelist-item -->
+				</div> <!-- /col -->
+
+			</ul><!-- /pagelist-list -->
+		</div> <!-- /row -->
+
+	</div>
+</section>
+
+<!-- Modal de confirmação -->
+<div class="modal deletar">
+  <div class="modal-inner">
+    <article class="modal-content">
+      <h2 class="modal-title">
+        wohoo!
+      </h2>
+      <p class="modal-message"> 
+      </p>
+      <div class="modal-buttons">
+        <a class="btn negative check sim">
+          Sim
+        </a>
+        <a class="btn positive x nao">
+          Não
+        </a>
+      </div>
+    </article>  <!-- /modal-content -->               
+  </div><!-- /modal-inner -->
+</div> <!-- /modal -->
+
+
+<div class="modal a">
+  <div class="modal-inner">
+    <article class="modal-content">
+      <h2 class="modal-title">
+        wohoo!
+      </h2>
+      <p class="modal-message"> 
+      </p>
+      <div class="modal-buttons">
+        <a class="btn positive check center">
+          Okay
+        </a>
+      </div>
+    </article>  <!-- /modal-content -->               
+  </div><!-- /modal-inner -->
+</div> <!-- /modal -->

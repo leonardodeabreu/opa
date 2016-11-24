@@ -1,0 +1,51 @@
+<section class="standard form-page bg-gray-pattern">
+	<div class="container" >
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+				<h1 class="form-title">
+		        	Esqueci minha senha
+		        </h1>
+				<form class="form user" name="usuarioForm">
+
+					<article class="info">
+						Iremos enviar sua nova no e-mail que você usou no cadastro :)
+					</article>
+
+					<span class="titulo">
+						<label class="label">
+							Qual e-mail você usa no opa?
+						</label>
+						<input ng-model="usuario.email" type="email" placeholder="Informe o email aqui..."></input>
+					</span>
+
+					<div class="modal">
+
+						<div class="modal-inner">
+							<article class="modal-content">
+
+								<h2 class="modal-title">
+									woohoo!
+								</h2>
+								<p class="modal-message">
+									Agora a sua nova senha está no seu e-mail!
+								</p>
+								<div class="modal-buttons">								
+									<a class="btn negative check center" href="#/app/login">
+										Ok, entendi
+									</a>
+								</div>
+							</article>	<!-- /modal-content -->								
+						</div><!-- /modal-inner -->
+
+					</div> <!-- /modal -->
+
+					<button ng-click=esqueciSenha(usuario.email) class="btn pink big fixed-bottom center modal-opener">
+						Enviar nova senha
+					</button>
+
+				</form>
+			</div><!-- /col -->
+
+		</div><!-- /row -->
+	</div><!-- /container -->
+</section>

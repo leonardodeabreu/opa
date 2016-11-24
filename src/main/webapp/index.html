@@ -1,0 +1,77 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/common/favicon.ico" /> 
+	<script type="text/javascript" src="js/_lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="js/_lib/angular/angular-route.min.js"></script>
+	
+	<script type="text/javascript">
+		image = '/imagens/usuario/e12323ee-3f84-4abe-a8fb-eb0bcd82e3a8.png';
+    id = undefined;
+    nome = 'Usuário';
+	</script>
+
+	<script type="text/javascript" src="js/_lib/angular/principal.js"></script>
+	<script type="text/javascript" src="js/_lib/angular/router.js"></script>
+	<!-- CONTROLLERS -->
+	<script type="text/javascript" src="js/controllers/header-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/usuario-cadastro-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/login-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/usuario-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/servico-cadastro-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/servico-detalhes-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/servico-feed-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/pedido-cadastro-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/pedido-feed-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/servico-gerenciar-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/quem-falou-comigo-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/servico-aberto-prestador-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/servico-aberto-solicitante-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/servico-finalizar-prestador-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/pedido-nao-atendido-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/pedido-finalizar-solicitante-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/servico-concluido-prestador-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/servico-concluido-solicitante-controller.js"></script>
+	<script type="text/javascript" src="js/controllers/esqueci-minha-senha-controller.js"></script>
+
+	<!-- JQUERY CONTROLLERS -->
+	<script type="text/javascript" src="js/jquery/pedidoNaoAtendidoJquery.js"></script>
+	<script type="text/javascript" src="js/jquery/footerJquery.js"></script>
+	<!-- ************ -->
+
+	<!-- SERVICES -->
+	<script type="text/javascript" src="js/services/service-abstract.js"></script>
+	<script type="text/javascript" src="js/services/my-storage-service.js"></script>
+	<script type="text/javascript" src="js/services/storage-service.js"></script>
+	<!-- ######## -->
+
+	<link rel="stylesheet" type="text/css" href="less/compiled/fontawesome.css">
+	<link rel="stylesheet" type="text/css" href="less/compiled/main.css">
+
+	<meta name="theme-color" content="#312F51">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#312F51">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#312F51">
+
+</head>
+<body ng-app="app">
+
+	<div ng-include="'views/includes/header.html'"  ng-controller="headerController"></div>
+	
+	<div ng-view>
+	</div>
+
+	<div ng-include="'views/includes/footer.html'" ng-controller="footerController"></div>
+
+</body>
+
+<script src="js/_lib/jquery/jquery.js"></script>
+<script src="js/jquery/plugins/jquery.bxslider.min.js"></script>
+
+
+</html>
+

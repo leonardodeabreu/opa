@@ -1,0 +1,114 @@
+<!-- Modal de confirmação -->
+<div class="modal">
+  <div class="modal-inner">
+    <article class="modal-content">
+      <h2 class="modal-title">
+      </h2>
+      <p class="modal-message"> 
+      </p>
+      <div class="modal-buttons">
+        <a class="btn positive check">
+          Okay
+        </a>
+      </div>
+    </article>  <!-- /modal-content -->               
+  </div><!-- /modal-inner -->
+</div>
+
+<section class="usuario-cadastro standard form-page bg-gray-pattern">
+  <div class="container" >
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+
+        <form class="form user" name="usuarioForm">
+          <span class="icon imagem">
+						<input type="file" custom-on-change="uploadFile"  name="image" class="image">
+              <figure class="input-select-image" style="background-image: url({{usuario.image}});"></figure>
+						</input>
+			    </span>
+
+          <span ng-hide="true">
+						<input type="hidden" ng-model="usuario.id" name="id" placeholder="id" class="id"></input>
+					</span>
+
+          <span class="icon nome">
+						<input type="text" ng-model="usuario.nome" name="nome" placeholder="Nome" ng-required="true"></input>
+					</span>
+
+          <span class="icon email">
+						<input type="email" ng-model="usuario.email" name="email" placeholder="Email" ng-required="true"></input>
+					</span>
+
+          <hr/>
+
+          <span class="icon usuario">
+						<input type="text" ng-model="usuario.login" name="login" placeholder="Usuário" ng-required="true"></input>
+					</span>
+
+          <span class="icon senha">
+						<input type="password" ng-model="usuario.senha" name="senha" placeholder="Senha" ng-required="true"></input>
+					</span>
+
+          <hr/>
+
+          <span class="icon telefone">
+              <select class="select-input" ng-model="usuario.telefones[0].tipo">
+                <option value="f" ng-selected="usuario.telefones[0].tipo == 'f'">Fixo</option>
+                <option value="c" ng-selected="usuario.telefones[0].tipo == 'c'">Celular</option>
+              </select>
+							<input type="number" ng-model="usuario.telefones[0].telefone" name="telefone" placeholder="Número" ng-required="true"></input>
+					</span>
+
+          <hr/>
+
+          <div class="row">
+            <div class="col-xs-6">
+              <span class="icon estado">
+                <select ng-change="getCidades()" ng-options="item as item.nome for item in estados track by item.nome" ng-model="usuario.estado">
+                  <option style="display:none" value="">Estado</option>
+                </select>
+              </span>
+            </div>
+
+            <div class="col-xs-6">
+              <span class="icon endereco">
+                <select class="" ng-options="item as item.nome for item in cidades track by item.nome" ng-model="usuario.cidade">
+                <option style="display:none" value="">Cidade</option>
+              </select>
+              </span>
+            </div>
+          </div>
+
+					<hr/>
+					
+          <div class="row">
+            <div class="col-xs-6">
+              <span class="icon nascimento">
+                <input type="date" ng-model="usuario.dataNascimento" name="dataNascimento" placeholder="Nascimento" ng-required="true"></input>
+              </span>
+            </div>
+            <div class="col-xs-6">
+           		<span class="icon genero">
+                <select ng-model="usuario.genero">
+                  <option value="M">Masculino</option>
+                  <option value="F">Feminino</option>
+                  <option value="O">Outros</option>
+              	</select>
+              </span>
+          	</div>
+          </div>
+
+					<span class="icon cpf">
+						<input type="text" ng-model="usuario.cpf" name="cpf" placeholder="CPF" ng-required="true"></input>
+					</span>
+
+          <button class="btn pink big fixed-bottom center" ng-click="adicionarUsuario(usuarioForm.$valid)">
+              Tá feito
+          </button>
+
+      	</form>
+      </div><!-- /col -->
+  	</div><!-- /row -->
+  </div><!-- /container -->
+    
+</section>

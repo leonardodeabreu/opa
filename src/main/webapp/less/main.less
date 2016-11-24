@@ -1,0 +1,274 @@
+// importing reset
+@import "imports/reset.less";
+// import same variables that bootstrap uses ( overriden )
+@import 'imports/variables.less';
+// import bootstrap mixins
+@import "imports/bootstrap/bootstrap.less";
+// importing mixins
+@import "imports/mixins.less";
+
+// importing fonts from google fonts css API
+//@import ~"url(//fonts.googleapis.com/css?family=@{title-font-import})";
+
+
+/*=================================
+=         General Styles          =
+=================================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-weight: normal;
+  box-sizing: border-box;
+  font-family: @regular;
+
+}
+
+html,
+body{
+  width:  100%;
+  height: 100%;
+  min-height: 100%;
+  background: transparent;
+  //display: table;
+  //table-layout: fixed;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &:before{
+    content: '';    
+    .transition(.5s);
+  }
+}//html.body
+
+body{ 
+  @media(min-width: 992px){
+    background-color: #f9f9f9;
+  }
+}//body
+
+a,
+a:hover,
+*:link ,
+a:link,
+a:visited,
+a:focus,
+a:active {
+  color: @site-link-color;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+  line-height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-weight: normal;
+}
+
+input, input:invalid, select, textarea{
+  outline: none;
+  -moz-box-shadow: none;
+}
+
+
+@media screen and (-webkit-min-device-pixel-ratio: 0){  
+  input[type=date], input[type=time], input[type=datetime-local], input[type=month] {
+    line-height: inherit;
+  }
+}
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn{
+  .opacity(1);
+}
+
+/*=================================
+=             Repeaters           =
+=================================*/
+
+// Columns
+.sisters{
+  margin-right: -4px;
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+// Sections
+.standard{
+
+  @media(max-width: 992px){
+    padding-top: 60px !important;
+    min-height: 100vh;
+  }
+
+  @media(min-width: 992px){
+    min-height: ~"calc(100vh - (82px + 121px))";
+    border-top: 2px solid @gray-lighter;
+  }
+}//.standard
+
+body.feed,
+body.pedido-feed,
+body.usuario{
+  @media(max-width: 992px){
+    background-color: #f1f1f1 !important;
+  }
+}
+
+.bg-gray-pattern{
+  @media(min-width: 767px){
+    background:  #F2F2F2 @form-page center repeat;
+  }
+}//.bg-gray-pattern
+
+.bg-gray-pattern-xs{
+  background:  #F2F2F2 @form-page center repeat;
+}//.bg-gray-pattern
+
+
+// Blocks
+.white-block(){
+  background: white;
+  .border.radius(5px);
+  overflow: hidden;
+  .box.shadow( 0 0 5px rgba(0,0,0,.1));
+
+  @media(max-width: 992px){
+    .box.shadow(0 0 5px rgba(0,0,0,.2));
+  }
+}
+
+.white-block{
+  .white-block();
+}
+
+.info{
+  background: @gray-lighter;
+  .border.radius(10px);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+// Alignement
+&.center{
+  margin: 0 auto;
+}
+&.right{
+  margin: 0 auto;
+  margin-right: 0;
+}
+
+// Images
+img{
+  max-width: 100%;
+}
+//nada a mostrar
+
+.nothing-to-show{
+  width: 90%;
+  max-width: 500px;
+  font-size: 16px;
+  padding: 15px;
+  .border.radius(15px);
+  background: @gray-lighter;
+  color: #5d5d5d;
+  text-shadow: 1px 1px rgba(255,255,255,0.3);
+  font-family: @bold;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+/*=================================
+=           Components           =
+=================================*/
+
+// - Buttons
+@import "components/buttons.less";
+
+// - Fields
+@import "components/fields.less";
+
+// - Filter and Order
+@import "components/filter-order.less";
+
+// - Template páginas de listagem
+@import "components/pagelist.less";
+
+// - Header 
+@import "components/header.less";
+
+// -  Tabs
+@import "components/tabs.less";
+
+// - Footer
+@import "components/footer.less";
+
+// - Modal
+@import "components/modal.less";
+
+// - Evaluation Bar
+@import "components/evaluationbar.less";
+
+// - Evaluation Bar
+@import "components/switch.less";
+
+// - Featured Feed
+@import "components/feed-featured.less";
+
+// - Tab Changer
+@import "components/tabchanger.less";
+
+// - Pagination
+@import "components/pagination.less";
+
+
+/*=================================
+=              Views              =
+=================================*/
+
+// - Feed
+@import "views/feed.less";
+
+// - Feed Pedido
+@import "views/pedido-feed.less";
+
+// - Login
+@import "views/login.less";
+
+// - Cadastro de Serviço 
+@import "views/servico-cadastro.less";
+
+// - Detalhes de Serviço 
+@import "views/servico-detalhes.less";
+
+// - Usuário : Perfil
+@import "views/usuario.less";
+
+// - CRUD Usuário
+@import "views/usuario-cadastro.less";
+
+// - Quem Falou Comigo
+@import "views/quem-falou-comigo.less";
+
+// - Gerenciar Serviços
+@import "views/servico-gerenciar-prestador.less";
+
+// - Cadastro de Pedido 
+@import "views/pedido-cadastro.less";
+
+// - Serviço Concluido 
+@import "views/servico-concluido.less";
+
+// - Serviço Aberto 
+@import "views/servico-aberto.less";
+
+// - Pedido Não Atendido
+@import "views/pedido-nao-atendido.less";
+
+// - Finalizar
+@import "views/finalizar.less";
+
+// - Finalizar
+@import "views/ajustes.less";

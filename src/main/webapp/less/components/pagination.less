@@ -1,0 +1,39 @@
+.pagination{
+	text-align: center;
+	padding: 15px 0;
+
+	@media(min-width: 767px){
+		padding: 30px 0;
+	}
+
+	li{
+		display: inline-block;
+		vertical-align: top;
+		padding: 20px;
+		border: 1px solid @gray-lighter;
+		border-bottom: 3px solid #dcdcdc;
+		background: lighten(@gray-lighter, 5%);
+		color: @pink;
+		line-height: 1;
+		font-family: @bold;
+		font-size: 14px;
+		margin: 0 5px;
+		width: ~"calc(50% - 20px)";
+		cursor: pointer;
+		.border.radius(5px);
+		height: 58px;
+
+		@media(min-width: 767px){
+			height: 62px;
+			font-size: 18px;
+    		width: 160px;
+    		font-family: @medium;
+		}
+
+		&:active{
+			margin-top: 2px;
+			height: 60px;
+			border-bottom: 1px solid #dcdcdc;
+		}
+	}//li
+}//pagination

@@ -1,0 +1,69 @@
+<section class="standard servico-concluido solicitante pagelist">
+	<div class="container">
+		
+		<div class="pagelist-header white-block solicitante">
+			<i class="pagelist-header-icon"></i>
+
+			<div class="pagelist-header-content">
+
+				<h1 class="pagelist-header-title">
+					Pedidos Concluídos
+				</h1>
+				<h2 class="pagelist-header-subtitle">
+					Serviços que já prestaram para mim
+				</h2>
+
+			</div> <!-- /pagelist-header-content -->
+
+		</div> <!-- /pagelist-header -->
+
+		<div class="row">
+			<ul class="pagelist-list">
+
+				<div class="nothing-to-show" ng-if="naoExisteNada">
+					Opa, ainda não existe nada aqui :(
+				</div>
+
+				<div class="col-sm-6 col-md-3" ng-repeat="hist in historicoServico | orderBy:'-inicio'">
+					<li class="pagelist-item white-block">
+						<a href="#/app/usuario/{{hist.usuario_id}}">
+							<figure class="pagelist-item-user" style="background-image: url({{hist.imagemUsuario}});"></figure>
+						</a>
+
+						<div class="pagelist-item-content">
+							<div class="client">						
+								<h2 class="service-title">
+									{{hist.pedido}}
+								</h2>
+								oferecido por
+								<b class="pagelist-item-client">
+									{{hist.usuarioRequisicao}}
+								</b>
+							</div>
+
+						</div> <!-- /pagelist-item-content -->
+
+						<div class="pagelist-item-buttons">
+
+							<button class="btn icon icon-avaliation">	
+							</button>
+
+
+						</div> <!-- /pagelist-item-buttons -->
+						<div class="evaluation">
+							Avaliação como consumidor deste serviço
+							<div class="evaluation-bar solicitante bar-5"></div>
+						</div>
+
+
+
+
+					</li> <!-- /pagelist-item -->
+				</div> <!-- /col -->
+
+
+			</ul><!-- /pagelist-list -->
+		</div> <!-- /row -->
+
+	</div>
+</section>

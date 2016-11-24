@@ -1,0 +1,90 @@
+<section class="standard pedido-nao-atendido pagelist">
+	<div class="container">
+		
+		<div class="pagelist-header white-block solicitante">
+			<i class="pagelist-header-icon"></i>
+
+			<div class="pagelist-header-content">
+
+				<h1 class="pagelist-header-title">
+					Pedidos Não Atendido
+				</h1>
+				<h2 class="pagelist-header-subtitle">
+					Serviços que solicitei aguardando prestador
+				</h2>
+
+			</div> <!-- /pagelist-header-content -->
+
+		</div> <!-- /pagelist-header -->
+
+		<div class="row">
+			<ul class="pagelist-list">
+
+				<div class="nothing-to-show" ng-if="naoExisteNada">
+					Opa, ainda não existe nada aqui :(
+				</div>
+
+				<div class="col-sm-6 col-md-4" ng-repeat="pedido in pedidoNaoAtendido | orderBy:'-dataCadastro'">
+					<li class="pagelist-item white-block">
+
+						<div class="pagelist-item-content">
+							<div class="client">						
+								<h2 class="service-title">
+									{{pedido.titulo}}
+								</h2>
+							</div>
+
+						</div> <!-- /pagelist-item-content -->
+
+						<div class="pagelist-item-buttons">
+							<button class="btn icon icon-trash modal-opener"></button>
+							<a href="#/app/pedido-cadastro/{{pedido.id}}">
+								<button class="btn icon icon-edit"></button>
+							</a>
+							<button class="btn icon icon-arrow-down text-pink">
+							</button>
+						</div> <!-- /pagelist-item-buttons -->
+
+						<div class="modal">
+
+							<div class="modal-inner">
+								<article class="modal-content">
+
+									<h2 class="modal-title">
+										ow, calma aí
+									</h2>
+									<p class="modal-message">
+										Deseja mesmo excluir este pedido?
+									</p>
+									<div class="modal-buttons">
+										<button class="btn negative check" ng-click="deletarPedido(pedido.id)">
+											Sim
+										</button>
+										<button class="btn positive x">
+											Não
+										</button>
+									</div>
+								</article>	<!-- /modal-content -->								
+							</div><!-- /modal-inner -->
+
+						</div> <!-- /modal -->
+
+						<div class="details">
+							<b class="category">
+								{{pedido.categoria}}
+							</b>
+							<p class="details-inner">
+								{{pedido.descricao}}
+							</p>
+						</div>
+
+
+					</li> <!-- /pagelist-item -->
+				</div> <!-- /col -->
+
+
+			</ul><!-- /pagelist-list -->
+		</div> <!-- /row -->
+
+	</div>
+</section>

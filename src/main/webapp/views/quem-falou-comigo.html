@@ -1,0 +1,128 @@
+<section class="standard quem-falou-comigo pagelist">
+	<div class="container">
+		
+		<div class="pagelist-header white-block prestador">
+			<i class="pagelist-header-icon"></i>
+
+			<div class="pagelist-header-content">
+
+				<h1 class="pagelist-header-title">
+					Quem Falou Comigo
+				</h1>
+				<h2 class="pagelist-header-subtitle">
+					Estas pessoas se interessaram pelo seu serviço
+				</h2>
+
+			</div> <!-- /pagelist-header-content -->
+
+		</div> <!-- /pagelist-header -->
+
+		<div class="row">
+			<ul class="pagelist-list">
+			
+				<div class="nothing-to-show" ng-if="naoExisteNada">
+					Opa, ainda não existe nada aqui :(
+				</div>
+
+			<!-- INICIAR REPEAT DAS INFORMAÇOES -->
+				<div class="col-sm-6 col-md-3" ng-repeat="hist in historicoServico | orderBy:'-inicio'">	
+
+					<li class="pagelist-item white-block">
+						<a href="#/app/usuario/{{hist.usuario_id}}">
+							<figure class="pagelist-item-user" style="background-image: url({{hist.imagemUsuario}});"></figure>
+						</a>
+
+						<div class="pagelist-item-content">
+							<div class="client">						
+								<b class="pagelist-item-client">
+									{{hist.usuarioRequisicao}}
+								</b>
+								se interessou por
+							</div>
+
+							<h2 class="service-title">
+									{{hist.servico}}
+							</h2>
+						</div> <!-- /pagelist-item-content -->
+
+						<div class="pagelist-item-buttons">
+
+							<button class="btn negative icon icon-close" ng-click="removerSolicitacao(hist.id)"></button>
+							<button class="btn icon icon-info">														
+							</button>
+							<button class="btn pink modal-opener">
+								Prestar						
+							</button>
+						</div> <!-- /pagelist-item-buttons -->
+
+						<div class="details">
+							Serviço solicitado dia <b>{{hist.inicio}}</b>
+						</div>
+						
+						<div class="modal">
+							<div class="modal-inner">
+								<article class="modal-content">
+									<h2 class="modal-title">
+										Prestar serviço
+									</h2>
+									<p class="modal-message">
+										Deseja mesmo prestar o serviço para <b class="user">{{hist.usuarioRequisicao}}</b>?
+									</p>
+									<div class="modal-buttons">
+										<button class="btn negative x">
+											Não
+										</button>
+										<button class="btn positive check" ng-click="recuperarObjOriginal(hist)">
+											Sim
+										</button>
+									</div>
+								</article>	<!-- /modal-content -->								
+							</div><!-- /modal-inner -->
+						</div> <!-- /modal -->
+
+					</li> <!-- /pagelist-item -->
+				</div> <!-- /col -->
+
+			</ul><!-- /pagelist-list -->
+		</div> <!-- /row -->
+
+	</div>
+</section>
+
+<!-- Modal de confirmação -->
+<div class="modal deletar">
+  <div class="modal-inner">
+    <article class="modal-content">
+      <h2 class="modal-title">
+        wohoo!
+      </h2>
+      <p class="modal-message"> 
+      </p>
+      <div class="modal-buttons">
+        <a class="btn negative check sim">
+          Sim
+        </a>
+        <a class="btn positive x nao">
+          Não
+        </a>
+      </div>
+    </article>  <!-- /modal-content -->               
+  </div><!-- /modal-inner -->
+</div> <!-- /modal -->
+
+<div class="modal a">
+  <div class="modal-inner">
+    <article class="modal-content">
+      <h2 class="modal-title">
+        wohoo!
+      </h2>
+      <p class="modal-message"> 
+      </p>
+      <div class="modal-buttons">
+        <a class="btn positive check center">
+          Okay
+        </a>
+      </div>
+    </article>  <!-- /modal-content -->               
+  </div><!-- /modal-inner -->
+</div> <!-- /modal -->

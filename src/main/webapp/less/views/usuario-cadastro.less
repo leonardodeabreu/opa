@@ -1,0 +1,64 @@
+//-- Cadastro de Usuário
+section.usuario-cadastro{
+  width: 100%;
+
+  .btn[ng-click="adicionarTelefone()"]{
+    margin-bottom: 20px; 
+  }
+
+  .form span.imagem {
+    background: #f2f2f2;
+    border-bottom: 1px solid #c4c3c3;
+    margin: -20px -15px 20px -15px;
+    position: relative;
+    height: 200px;
+
+    @media(min-width: 992px){
+      margin: -20px;
+      margin-bottom: 20px;
+    }
+
+    &:before,
+    &:after{
+      display: none;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      position: absolute;
+      z-index: 2;
+
+      & + .input-select-image{
+        width: 147px;
+        height: 147px;
+        background: center center no-repeat;
+        background-size: cover;
+        background-color: #e0e0df;
+        .border.radius(100%);
+        position: absolute;
+        margin: auto;
+        top: -20px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        cursor: pointer;
+
+        &:after{
+          content: 'Adicionar Imagem';
+          display: block;
+          text-align: center;
+          position: absolute;
+          bottom: -23px;
+          font-family: @regular;
+          color: #5d5d5d;
+          text-transform: uppercase;
+          font-size: 9px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}//section.usuario-cadastro

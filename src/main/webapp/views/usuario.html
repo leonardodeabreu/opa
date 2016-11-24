@@ -1,0 +1,80 @@
+<section class="usuario standard ">
+
+	<div class="container">
+		<header class="usuario-header" style="background-image: url({{image}});">
+			<a href="">
+				<span class="flag">
+				</span>
+			</a>
+
+			<div class="sisters">
+				<figure class="usuario-header-img" style="background-image: url({{image}});">
+				</figure>
+				<h2 ng-bind="nome"></h2>
+			</div>
+			<div class="sisters">
+				<div class="usuario-evaluation-bar">
+					<h3>
+						Prestador nível:
+					</h3>
+					<div class="evaluation-bar prestador  bar-8"></div>
+					<h3>
+						Consumidor nível:
+					</h3>
+					<div class="evaluation-bar solicitante bar-5"></div>
+				</div>
+			</div>
+		</header>
+	</div><!-- /container -->
+
+	<div class="container">
+	
+		<div class="filter-order white-block">
+			<div class="sisters">
+				
+			</div>
+			<div class="sisters">
+				<div class="feed-select">
+					<select>
+						<option>
+							Ordenar Por
+						</option>
+						<option>
+							Perto de Mim
+						</option>
+						<option>
+							Mais Recentes
+						</option>
+						<option>
+							Melhor Avaliado
+						</option>
+						<option>
+							A-Z
+						</option>
+					</select>
+				</div>
+			</div>
+		</div><!-- /filter-order -->
+
+		<div class="feed-itens">
+			<div class="row">
+				<div ng-repeat="servico in servicos" class="col-xs-6 col-sm-4 col-md-3">
+					<div class="white-block">
+						<a href="#/app/servico-detalhes/{{servico.id}}" title="{{servico.title}}" alt="{{servico.title}}">
+							<figure style="background-image: url('{{servico.image}}');">
+								<span class="period" ng-show="servico.periodo">
+									R$ {{servico.periodo}} DIA
+								</span>
+							</figure>
+							<article class="feed-iten-content">
+								<span class="category-text">{{servico.categoria}}</span>
+								<h1 class="title"><b>{{servico.titulo}}</b></h1>	
+							</article>
+						</a>					
+					</div>
+				</div>
+
+			</div><!-- /row -->
+		</div> <!-- /feed-itens -->
+	</div>
+</section>

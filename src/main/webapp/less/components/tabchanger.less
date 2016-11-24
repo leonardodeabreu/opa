@@ -1,0 +1,41 @@
+.tabchanger{
+	display: table;
+	width: 100%;
+	background: @purple;
+
+	@media(min-width: 992px){
+		background: transparent;
+		width: 250px;
+		margin: 0 auto;
+		margin-bottom: 20px;
+    	margin-top: -81px;
+	}
+
+	.btn{
+		display: table-cell;
+		vertical-align: middle;
+		width: 50%;
+		text-align: center;
+		color: white;
+		font-family: @bold;
+		background: transparent;
+		border: none;
+		.border.radius(0);
+		padding: 0 0 18px 0;
+		border-bottom: 3px solid transparent;
+
+		@media(min-width: 992px){
+			color: @purple;
+			padding: 24px 0;
+		}
+	}//btn
+
+}//.tabchanger
+
+body.feed .tabchanger .btn:nth-of-type(1){
+	border-bottom: 3px solid @yellow;
+}
+
+body.pedido-feed .tabchanger .btn:nth-of-type(2){
+	border-bottom: 3px solid @yellow;
+}

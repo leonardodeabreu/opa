@@ -1,0 +1,138 @@
+// importing bootstrap
+@import "imports/bootstrap/bootstrap.less";
+
+// importing mixins
+@import "imports/mixins.less";
+
+
+// helper classes to ease edition/customization in html
+
+//////////
+// Text //
+//////////
+
+.text-center{ text-align: center !important; }
+.no-text-decoration{ text-decoration: none !important; }
+
+
+
+
+////////////
+// Margin //
+////////////
+
+// no margin
+.no-margin{ margin: 0 !important; }
+.no-margin-top{ margin-top: 0 !important; }
+.no-margin-left{ margin-left: 0 !important; }
+.no-margin-right{ margin-right: 0 !important; }
+.no-margin-bottom{ margin-bottom: 0 !important; }
+
+.margin-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.generate-helper( m, margin, 8);
+
+.generate-helper( mt, margin-top, 8);
+.generate-helper( mb, margin-bottom, 8);
+.generate-helper( ml, margin-left, 8);
+.generate-helper( mr, margin-right, 8);
+
+
+
+/////////////
+// Padding //
+/////////////
+
+// no padding
+.no-padding{ padding: 0 !important; }
+.no-padding-top{ padding-top: 0 !important; }
+.no-padding-left{ padding-left: 0 !important; }
+.no-padding-right{ padding-right: 0 !important; }
+.no-padding-bottom{ padding-bottom: 0 !important; }
+
+.generate-helper( p, padding, 8);
+
+.generate-helper( pt, padding-top, 8);
+.generate-helper( pb, padding-bottom, 8);
+.generate-helper( pl, padding-left, 8);
+.generate-helper( pr, padding-right, 8);
+
+
+
+
+
+
+/*==============================
+=            Colors            =
+==============================*/
+
+.bg-white{ background-color: white; }
+
+.bg-inverted-fade{
+  background: fade( @gray-base, 50% );
+  color: white;
+}
+
+.bg-image{
+  background-size: cover;
+  background-position: center;
+}
+
+.text-white{ color: white; }
+
+
+
+/*=====================================
+=            Border Radius            =
+=====================================*/
+.no-border-radius{
+  border-radius: 0;
+}
+
+
+
+/*=====================================
+=            Color Classes            =
+=====================================*/
+.bg-gray-base      { background-color: @gray-base;    }
+.bg-gray-darker    { background-color: @gray-darker;  }
+.bg-gray-dark      { background-color: @gray-dark;    }
+.bg-gray           { background-color: @gray;         }
+.bg-gray-light     { background-color: @gray-light;   }
+.bg-gray-lighter   { background-color: @gray-lighter; }
+
+.text-gray-base    { color: @gray-base;    }
+.text-gray-darker  { color: @gray-darker;  }
+.text-gray-dark    { color: @gray-dark;    }
+.text-gray         { color: @gray;         }
+.text-gray-light   { color: @gray-light;   }
+.text-gray-lighter { color: @gray-lighter; }
+
+
+
+
+
+
+
+// loop to generate helper classes
+// .generate-helper( m-b, margin-bottom, 2 );
+// -> .m-b10{ margin-bottom: 10px }
+// -> .m-b20{ margin-bottom: 20px }
+.generate-helper( @abr: m, @prop: margin, @n, @i: 1 ) when (@i =< @n) {
+  @ii: @i * 10;
+  .@{abr}@{ii}{
+    @{prop}: ( 10px  * @i);
+  }
+  .generate-helper( @abr, @prop, @n, (@i + 1) );
+}
+
+
+
+
+/* .bx-controls-direction{
+  .container;
+  position: relative;
+} */
